@@ -19,7 +19,7 @@ import java.util.List;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long transactionId;
+    private Long id;
 
     @Column(nullable = false)
     private LocalDate date;
@@ -39,6 +39,6 @@ public class Transaction {
     @ManyToOne
     private Account account;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "transaction", cascade = CascadeType.ALL)
     private List<Category> categories;
 }

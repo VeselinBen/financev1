@@ -20,7 +20,7 @@ import java.util.Set;
 public class BudgetCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long budgetCategoryId;
+    private Long id;
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "category_budget_category",

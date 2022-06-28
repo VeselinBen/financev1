@@ -10,12 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import com.Test.back.enumeration.KorisnickaUloga;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
@@ -25,12 +23,12 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     @Column(unique = true, nullable = false)
     private String korisnickoIme;
 
-    @Column( unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     private String eMail;
 
     @Column
@@ -46,7 +44,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private KorisnickaUloga uloga;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Account> accounts;
-    
+
 }

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ import java.util.Set;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoryId;
+    private Long id;
 
     private String categoryName;
 
@@ -27,4 +28,8 @@ public class Category {
             joinColumns = { @JoinColumn(name = "category_id") },
             inverseJoinColumns = { @JoinColumn(name = "budget_category_id") })
     private Set<BudgetCategory> categoryBudgetSet = new HashSet<>();
+
+
+    @ManyToOne
+    private Transaction transaction;
 }
